@@ -3,889 +3,144 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#123c2b">
 <title>Global Task Earn</title>
-
 <style>
-:root {
-  --green: #16764a;
-  --dark: #123c2b;
-  --bg: #f3f7f4;
-  --card: #ffffff;
-  --text: #17251e;
-  --muted: #68776f;
-  --border: #dfe9e2;
-  --soft: #e7f5ec;
-  --red: #c0392b;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Arial, "Noto Sans Bengali", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-button, input, select, textarea { font: inherit; }
-button {
-  border: 0;
-  padding: 11px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-}
-button:disabled { opacity: .55; cursor: not-allowed; }
-.primary { background: var(--green); color: white; }
-.secondary { background: var(--soft); color: var(--green); }
-.danger { background: #fdebea; color: var(--red); }
-.container { max-width: 1050px; margin: auto; padding: 15px; }
-header {
-  background: var(--dark);
-  color: white;
-  padding: 16px 0;
-}
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.logo { font-size: 20px; font-weight: 900; }
-.logo span { color: #83e2ad; }
-.small { font-size: 12px; }
-.muted { color: var(--muted); }
-.hero {
-  background: linear-gradient(125deg, #123c2b, #238957);
-  color: white;
-  border-radius: 18px;
-  padding: 23px;
-  margin: 17px 0;
-}
-.hero h1 { margin: 0 0 10px; font-size: 28px; }
-.hero p { line-height: 1.6; margin-bottom: 0; }
-.notice {
-  background: #fff3df;
-  color: #74501d;
-  border-radius: 12px;
-  padding: 12px;
-  line-height: 1.55;
-  font-size: 13px;
-  margin: 12px 0;
-}
-.nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
-.nav button { background: white; border: 1px solid var(--border); color: var(--text); }
-.nav button.active { background: var(--green); color: white; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 16px;
-  margin-bottom: 13px;
-  min-width: 0;
-}
-.stat-label { color: var(--muted); font-size: 13px; }
-.stat-number { font-size: 25px; font-weight: 900; margin-top: 8px; }
-h2 { font-size: 20px; margin: 0 0 14px; }
-h3 { font-size: 17px; margin: 0 0 8px; }
-.field { display: grid; gap: 6px; margin: 12px 0; }
-.field label { font-weight: bold; font-size: 13px; }
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #cfddd3;
-  border-radius: 10px;
-  background: white;
-  color: var(--text);
-}
-textarea { min-height: 85px; resize: vertical; }
-.row { display: flex; gap: 10px; }
-.row > * { flex: 1; min-width: 0; }
-.task-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-.task { display: flex; flex-direction: column; }
-.task p { color: var(--muted); line-height: 1.5; flex: 1; }
-.reward { color: var(--green); font-size: 19px; font-weight: 900; }
-.badge {
-  display: inline-block;
-  background: var(--soft);
-  color: var(--green);
-  padding: 5px 9px;
-  border-radius: 30px;
-  font-size: 12px;
-  margin: 4px 0;
-}
-.item {
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
-  overflow-wrap: anywhere;
-}
-.item:last-child { border-bottom: 0; }
-.item-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-}
-.item-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
-.item-actions button { padding: 8px 10px; font-size: 12px; }
-.hidden { display: none !important; }
-footer { text-align: center; color: var(--muted); font-size: 12px; padding: 25px 5px; }
-hr { border: 0; border-top: 1px solid var(--border); margin: 17px 0; }
-@media(max-width:650px) {
-  .container { padding: 11px; }
-  .grid { grid-template-columns: 1fr; gap: 8px; }
-  .task-grid { grid-template-columns: 1fr; }
-  .hero { padding: 19px; }
-  .hero h1 { font-size: 24px; }
-  .row { flex-direction: column; gap: 0; }
-  .stat-number { font-size: 23px; }
-}
+:root{--green:#16764a;--dark:#123c2b;--bg:#f3f7f4;--card:#fff;--text:#17251e;--muted:#68776f;--border:#dfe9e2;--soft:#e7f5ec;--red:#c0392b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{border:0;padding:11px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
+button:disabled{opacity:.55;cursor:not-allowed}
+.primary{background:var(--green);color:#fff}.secondary{background:var(--soft);color:var(--green)}.danger{background:#fdebea;color:var(--red)}
+.container{max-width:1050px;margin:auto;padding:15px}
+header{background:var(--dark);color:white;padding:16px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:20px;font-weight:900}.logo span{color:#83e2ad}
+.small{font-size:12px}.muted{color:var(--muted)}
+.hero{background:linear-gradient(125deg,#123c2b,#238957);color:#fff;border-radius:18px;padding:23px;margin:17px 0}
+.hero h1{margin:0 0 10px;font-size:28px}.hero p{line-height:1.6;margin-bottom:0}
+.notice{background:#fff3df;color:#74501d;border-radius:12px;padding:12px;line-height:1.55;font-size:13px;margin:12px 0}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
+.nav button{background:#fff;border:1px solid var(--border);color:var(--text)}
+.nav button.active{background:var(--green);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:16px;margin-bottom:13px;min-width:0}
+.stat-label{color:var(--muted);font-size:13px}.stat-number{font-size:25px;font-weight:900;margin-top:8px}
+h2{font-size:20px;margin:0 0 14px}h3{font-size:17px;margin:0 0 8px}
+.field{display:grid;gap:6px;margin:12px 0}.field label{font-weight:bold;font-size:13px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cfddd3;border-radius:10px;background:white;color:var(--text)}
+textarea{min-height:85px;resize:vertical}
+.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
+.task-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.task{display:flex;flex-direction:column}.task p{color:var(--muted);line-height:1.5;flex:1}
+.reward{color:var(--green);font-size:19px;font-weight:900}
+.badge{display:inline-block;background:var(--soft);color:var(--green);padding:5px 9px;border-radius:30px;font-size:12px;margin:4px 0}
+.item{border-bottom:1px solid var(--border);padding:12px 0;overflow-wrap:anywhere}
+.item:last-child{border-bottom:0}.item-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.item-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.item-actions button{padding:8px 10px;font-size:12px}
+.hidden{display:none!important}
+#cloud-login{background:#fff;padding:16px;margin:15px 0;border-radius:14px;border:1px solid var(--border)}
+#cloud-status{overflow-wrap:anywhere;line-height:1.5}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 5px}
+hr{border:0;border-top:1px solid var(--border);margin:17px 0}
+@media(max-width:650px){.container{padding:11px}.grid,.task-grid{grid-template-columns:1fr;gap:8px}.hero{padding:19px}.hero h1{font-size:24px}.row{flex-direction:column;gap:0}.stat-number{font-size:23px}}
 </style>
 </head>
-
 <body>
-
-<header>
-  <div class="container header-inner">
-    <div class="logo">🌍 Global <span>Task Earn</span></div>
-    <span id="headerCountry" class="small">বিশ্বব্যাপী</span>
-  </div>
-</header>
+<header><div class="container header-inner">
+<div class="logo">🌍 Global <span>Task Earn</span></div>
+<span id="headerCountry" class="small">বিশ্বব্যাপী</span>
+</div></header>
 
 <main class="container">
-
-  <section class="hero">
-    <h1>ছোট কাজ, পরিষ্কার হিসাব</h1>
-    <p>কাজ দেখুন, নির্দেশনা অনুসরণ করুন এবং কাজের প্রমাণ জমা দিন।
-    অনুমোদনের অবস্থা আপনার ড্যাশবোর্ডে দেখুন।</p>
-  </section>
-
-  <div class="notice">
-    <strong>পরীক্ষামূলক সংস্করণ:</strong>
-    এখানে বাস্তবে টাকা পাঠানো হয় না। কাজের পুরস্কার কেবল ডেমো।
-    কাউকে টাকা দিয়ে কাজ পাওয়ার প্রতিশ্রুতিতে বিশ্বাস করবেন না।
-  </div>
-
-  <nav class="nav">
-    <button class="active" data-page="home">🏠 হোম</button>
-    <button data-page="tasks">📋 কাজ</button>
-    <button data-page="wallet">💰 আয় ও পেমেন্ট</button>
-    <button data-page="admin">🔐 Admin</button>
-  </nav>
-
-  <!-- HOME -->
-  <section id="page-home" class="page">
-    <div class="card">
-      <h2>👤 আপনার প্রোফাইল</h2>
-      <div class="row">
-        <div class="field">
-          <label for="profileName">আপনার নাম</label>
-          <input id="profileName" maxlength="60" placeholder="নাম লিখুন">
-        </div>
-        <div class="field">
-          <label for="profileCountry">আপনার দেশ</label>
-          <select id="profileCountry">
-            <option value="Bangladesh">বাংলাদেশ</option>
-            <option value="Saudi Arabia">সৌদি আরব</option>
-            <option value="Other">অন্যান্য দেশ</option>
-          </select>
-        </div>
-      </div>
-      <button class="primary" id="saveProfile">প্রোফাইল সেভ করুন</button>
-      <span id="profileMessage" class="small muted"></span>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="stat-label">মোট অনুমোদিত আয়</div>
-        <div class="stat-number" id="totalEarned">৳0.00</div>
-      </div>
-      <div class="card">
-        <div class="stat-label">পর্যালোচনায় থাকা কাজ</div>
-        <div class="stat-number" id="pendingTasks">0</div>
-      </div>
-      <div class="card">
-        <div class="stat-label">পেমেন্ট আবেদন</div>
-        <div class="stat-number" id="withdrawalCount">0</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>🚀 শুরু করুন</h2>
-      <p class="muted">প্রথমে প্রোফাইল সেভ করুন। তারপর কাজের তালিকা থেকে একটি কাজ বেছে নিন।</p>
-      <button class="primary" data-goto="tasks">কাজ দেখুন</button>
-      <button class="secondary" data-goto="wallet">আয়ের হিসাব দেখুন</button>
-    </div>
-  </section>
-
-  <!-- TASKS -->
-  <section id="page-tasks" class="page hidden">
-    <h2>📋 উপলভ্য কাজ</h2>
-    <p class="muted">এগুলো ডেমো কাজ। বাস্তব ক্লায়েন্ট বা অর্থায়ন যুক্ত করা হয়নি।</p>
-    <div id="taskList" class="task-grid"></div>
-
-    <div class="card">
-      <h2>📝 জমা দেওয়া কাজ</h2>
-      <div id="submissionList"></div>
-    </div>
-  </section>
-
-  <!-- WALLET -->
-  <section id="page-wallet" class="page hidden">
-    <div class="card">
-      <h2>💰 আপনার ওয়ালেট</h2>
-      <div class="stat-label">অনুমোদিত ডেমো ব্যালেন্স</div>
-      <div class="stat-number" id="walletBalance">৳0.00</div>
-      <p class="muted small">এই ব্যালেন্স আসল টাকা বা ব্যাংক ব্যালেন্স নয়।</p>
-    </div>
-
-    <div class="card">
-      <h2>💳 টাকা তোলার আবেদন</h2>
-      <div class="notice">পেমেন্ট পদ্ধতি নির্বাচন করলেই টাকা পাঠানো হয় না।
-      বাস্তব পেমেন্ট চালু না হওয়া পর্যন্ত আবেদন শুধু ডেমো রেকর্ড হিসেবে থাকবে।</div>
-
-      <div class="field">
-        <label for="withdrawAmount">আবেদনের পরিমাণ</label>
-        <input id="withdrawAmount" type="number" min="1" step="0.01" placeholder="পরিমাণ লিখুন">
-      </div>
-
-      <div class="field">
-        <label for="withdrawMethod">পেমেন্ট পদ্ধতি</label>
-        <select id="withdrawMethod">
-          <option value="bKash">bKash</option>
-          <option value="Nagad">Nagad</option>
-          <option value="Bank transfer">Bank transfer</option>
-          <option value="PayPal">PayPal</option>
-          <option value="STC Pay">STC Pay</option>
-          <option value="Other">অন্যান্য</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="withdrawAccount">পেমেন্ট অ্যাকাউন্ট / নম্বর</label>
-        <input id="withdrawAccount" maxlength="120" placeholder="অ্যাকাউন্টের তথ্য">
-      </div>
-
-      <button class="primary" id="requestWithdrawal">আবেদন জমা দিন</button>
-    </div>
-
-    <div class="card">
-      <h2>📜 লেনদেন ও আবেদন</h2>
-      <div id="transactionList"></div>
-    </div>
-  </section>
-
-  <!-- ADMIN -->
-  <section id="page-admin" class="page hidden">
-    <div class="card">
-      <h2>🔐 Admin Panel (ডেমো)</h2>
-      <div class="notice">
-        সতর্কতা: এই Admin Panel শুধু পরীক্ষার জন্য।
-        এটি নিরাপদ লগইন নয়; ব্রাউজারের কোড বা ডেটা বদলে নিয়ন্ত্রণ এড়িয়ে যাওয়া সম্ভব।
-        বাস্তব ব্যবহারকারীর টাকা বা ব্যক্তিগত তথ্যের জন্য এটি ব্যবহার করবেন না।
-      </div>
-      <div id="adminLogin">
-        <div class="field">
-          <label for="adminPassword">ডেমো পাসওয়ার্ড</label>
-          <input id="adminPassword" type="password" placeholder="ডেমো পাসওয়ার্ড লিখুন">
-        </div>
-        <button class="primary" id="adminLoginBtn">Admin খুলুন</button>
-        <p class="muted small">পরীক্ষার পাসওয়ার্ড: <strong>1234</strong></p>
-      </div>
-      <div id="adminContent" class="hidden">
-        <button class="secondary" id="adminLogout">Admin বন্ধ করুন</button>
-        <hr>
-        <h3>কাজের অনুমোদন</h3>
-        <div id="adminSubmissions"></div>
-        <hr>
-        <h3>টাকা তোলার আবেদন</h3>
-        <div id="adminWithdrawals"></div>
-        <hr>
-        <h3>নতুন ডেমো কাজ যোগ করুন</h3>
-        <div class="field">
-          <label for="newTaskTitle">কাজের নাম</label>
-          <input id="newTaskTitle" maxlength="100" placeholder="কাজের নাম">
-        </div>
-        <div class="field">
-          <label for="newTaskDescription">কাজের নির্দেশনা</label>
-          <textarea id="newTaskDescription" maxlength="1000" placeholder="কী করতে হবে"></textarea>
-        </div>
-        <div class="field">
-          <label for="newTaskReward">ডেমো পুরস্কার (৳)</label>
-          <input id="newTaskReward" type="number" min="0" step="0.01" placeholder="যেমন 5">
-        </div>
-        <button class="primary" id="addTaskBtn">কাজ যোগ করুন</button>
-        <hr>
-        <button class="danger" id="clearDataBtn">এই ডিভাইসের সব ডেমো ডেটা মুছুন</button>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    Global Task Earn • Prototype v1.0<br>
-    এই সংস্করণের ডেটা শুধু বর্তমান ব্রাউজারে থাকে।
-  </footer>
-</main>
-
-<script>
-"use strict";
-
-/*
- * Global Task Earn - Frontend prototype only.
- * Not a real-money payment system.
- * Do not use client-side admin controls for a live service.
- */
-
-const STORAGE_KEY = "global-task-earn-prototype-v1";
-
-const DEFAULT_TASKS = [
-  {
-    id: "demo-1",
-    title: "ওয়েবসাইট পর্যালোচনা",
-    description: "নির্দেশনা অনুযায়ী একটি ওয়েবসাইট দেখে সৎ মতামত লিখুন।",
-    reward: 5
-  },
-  {
-    id: "demo-2",
-    title: "ছোট জরিপ",
-    description: "নমুনা জরিপের উত্তর দিন। গোপন বা সংবেদনশীল তথ্য দেবেন না।",
-    reward: 8
-  },
-  {
-    id: "demo-3",
-    title: "ব্যবহারযোগ্যতা পরীক্ষা",
-    description: "নমুনা অ্যাপ পরীক্ষা করে সমস্যা বা মতামত জমা দিন।",
-    reward: 10
-  },
-  {
-    id: "demo-4",
-    title: "পণ্যের তথ্য যাচাই",
-    description: "প্রকাশ্য পণ্যের তথ্য যাচাই করে ফলাফল লিখুন।",
-    reward: 6
-  }
-];
-
-function initialState() {
-  return {
-    profile: null,
-    tasks: DEFAULT_TASKS.map(task => ({...task})),
-    submissions: [],
-    withdrawals: [],
-    ledger: []
-  };
-}
-
-let state = initialState();
-let adminUnlocked = false;
-
-try {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) {
-    const parsed = JSON.parse(saved);
-    if (parsed && typeof parsed === "object") {
-      state = {
-        ...initialState(),
-        ...parsed
-      };
-    }
-  }
-} catch (error) {
-  console.warn("Saved demo data could not be loaded.");
-}
-
-const $ = id => document.getElementById(id);
-
-function makeId(prefix) {
-  return prefix + "-" + Date.now() + "-" +
-    Math.random().toString(36).slice(2, 8);
-}
-
-function today() {
-  return new Date().toLocaleString();
-}
-
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
-}
-
-function numberValue(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : 0;
-}
-
-function money(value) {
-  return "৳" + numberValue(value).toFixed(2);
-}
-
-function saveState() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch (error) {
-    alert("ডেটা সেভ করা যায়নি। ব্রাউজারের স্টোরেজ পরীক্ষা করুন।");
-  }
-  render();
-}
-
-function getBalance() {
-  return state.ledger.reduce((total, entry) => {
-    return total + numberValue(entry.amount);
-  }, 0);
-}
-
-function showPage(pageName) {
-  document.querySelectorAll(".page").forEach(page => {
-    page.classList.toggle("hidden", page.id !== "page-" + pageName);
-  });
-
-  document.querySelectorAll("[data-page]").forEach(button => {
-    button.classList.toggle("active", button.dataset.page === pageName);
-  });
-
-  window.scrollTo({top: 0, behavior: "smooth"});
-}
-
-document.querySelectorAll("[data-page]").forEach(button => {
-  button.addEventListener("click", () => showPage(button.dataset.page));
-});
-
-document.querySelectorAll("[data-goto]").forEach(button => {
-  button.addEventListener("click", () => showPage(button.dataset.goto));
-});
-
-$("saveProfile").addEventListener("click", () => {
-  const name = $("profileName").value.trim();
-  const country = $("profileCountry").value;
-
-  if (!name) {
-    alert("আপনার নাম লিখুন।");
-    return;
-  }
-
-  state.profile = {name, country};
-  saveState();
-  $("profileMessage").textContent = "প্রোফাইল এই ডিভাইসে সেভ হয়েছে।";
-});
-
-function submitTask(taskId) {
-  if (!state.profile) {
-    alert("আগে হোম পেজে গিয়ে প্রোফাইল সেভ করুন।");
-    showPage("home");
-    return;
-  }
-
-  const task = state.tasks.find(item => item.id === taskId);
-  if (!task) return;
-
-  const alreadySubmitted = state.submissions.some(item =>
-    item.taskId === taskId && item.status !== "rejected"
-  );
-
-  if (alreadySubmitted) {
-    alert("এই কাজের জন্য আগে আবেদন জমা দেওয়া হয়েছে।");
-    return;
-  }
-
-  const proof = prompt(
-    "কাজের প্রমাণ বা মন্তব্য লিখুন। ডেমোতে শুধু টেক্সট গ্রহণ করা হয়:"
-  );
-
-  if (!proof || !proof.trim()) return;
-
-  state.submissions.push({
-    id: makeId("submission"),
-    taskId: task.id,
-    title: task.title,
-    reward: numberValue(task.reward),
-    proof: proof.trim(),
-    status: "pending",
-    date: today()
-  });
-
-  saveState();
-  alert("কাজ জমা হয়েছে। Admin পর্যালোচনার অপেক্ষায় আছে। এটি এখনো আয় নয়।");
-}
-
-function approveSubmission(id) {
-  const submission = state.submissions.find(item => item.id === id);
-  if (!submission || submission.status !== "pending") return;
-
-  submission.status = "approved";
-  submission.reviewedAt = today();
-
-  state.ledger.push({
-    id: makeId("ledger"),
-    type: "task_reward",
-    description: "অনুমোদিত কাজ: " + submission.title,
-    amount: numberValue(submission.reward),
-    date: today()
-  });
-
-  saveState();
-}
-
-function rejectSubmission(id) {
-  const submission = state.submissions.find(item => item.id === id);
-  if (!submission || submission.status !== "pending") return;
-
-  submission.status = "rejected";
-  submission.reviewedAt = today();
-  saveState();
-}
-
-function requestWithdrawal() {
-  if (!state.profile) {
-    alert("আগে প্রোফাইল সেভ করুন।");
-    showPage("home");
-    return;
-  }
-
-  const amount = numberValue($("withdrawAmount").value);
-  const method = $("withdrawMethod").value;
-  const account = $("withdrawAccount").value.trim();
-
-  if (amount <= 0 || !account) {
-    alert("সঠিক পরিমাণ ও পেমেন্ট অ্যাকাউন্ট লিখুন।");
-    return;
-  }
-
-  const reserved = state.withdrawals
-    .filter(item => item.status === "pending")
-    .reduce((sum, item) => sum + numberValue(item.amount), 0);
-
-  const available = getBalance() - reserved;
-
-  if (amount > available) {
-    alert("আপনার উপলভ্য ডেমো ব্যালেন্সের চেয়ে বেশি আবেদন করা যাবে না।");
-    return;
-  }
-
-  state.withdrawals.push({
-    id: makeId("withdrawal"),
-    amount,
-    method,
-    account,
-    status: "pending",
-    date: today()
-  });
-
-  saveState();
-  $("withdrawAmount").value = "";
-  $("withdrawAccount").value = "";
-  alert("ডেমো আবেদন সেভ হয়েছে। বাস্তবে টাকা পাঠানো হয়নি।");
-}
-
-$("requestWithdrawal").addEventListener("click", requestWithdrawal);
-
-function updateWithdrawal(id, newStatus) {
-  const withdrawal = state.withdrawals.find(item => item.id === id);
-  if (!withdrawal || withdrawal.status !== "pending") return;
-
-  if (newStatus === "paid") {
-    /*
-     * This only records a demo status.
-     * It does NOT transfer any money.
-     */
-    withdrawal.status = "marked_paid_demo";
-    withdrawal.reviewedAt = today();
-
-    state.ledger.push({
-      id: makeId("ledger"),
-      type: "withdrawal",
-      description: "ডেমো উত্তোলন: " + withdrawal.method,
-      amount: -numberValue(withdrawal.amount),
-      date: today()
-    });
-  } else {
-    withdrawal.status = "rejected";
-    withdrawal.reviewedAt = today();
-  }
-
-  saveState();
-}
-
-function addTask() {
-  const title = $("newTaskTitle").value.trim();
-  const description = $("newTaskDescription").value.trim();
-  const reward = numberValue($("newTaskReward").value);
-
-  if (!title || !description || reward < 0) {
-    alert("কাজের নাম, নির্দেশনা ও সঠিক পুরস্কার দিন।");
-    return;
-  }
-
-  state.tasks.push({
-    id: makeId("task"),
-    title,
-    description,
-    reward
-  });
-
-  $("newTaskTitle").value = "";
-  $("newTaskDescription").value = "";
-  $("newTaskReward").value = "";
-
-  saveState();
-  alert("নতুন ডেমো কাজ যোগ হয়েছে।");
-}
-
-$("addTaskBtn").addEventListener("click", addTask);
-
-$("adminLoginBtn").addEventListener("click", () => {
-  if ($("adminPassword").value !== "1234") {
-    alert("ডেমো পাসওয়ার্ড সঠিক নয়।");
-    return;
-  }
-
-  adminUnlocked = true;
-  $("adminLogin").classList.add("hidden");
-  $("adminContent").classList.remove("hidden");
-  renderAdmin();
-});
-
-$("adminLogout").addEventListener("click", () => {
-  adminUnlocked = false;
-  $("adminLogin").classList.remove("hidden");
-  $("adminContent").classList.add("hidden");
-  $("adminPassword").value = "";
-});
-
-$("clearDataBtn").addEventListener("click", () => {
-  if (!confirm("এই ব্রাউজারের সব Global Task Earn ডেমো ডেটা মুছে ফেলবেন?")) {
-    return;
-  }
-
-  state = initialState();
-  adminUnlocked = false;
-  localStorage.removeItem(STORAGE_KEY);
-  $("adminLogin").classList.remove("hidden");
-  $("adminContent").classList.add("hidden");
-  render();
-  alert("এই ডিভাইসের ডেমো ডেটা মুছে ফেলা হয়েছে।");
-});
-
-function renderTasks() {
-  $("taskList").innerHTML = state.tasks.map(task => {
-    const existing = state.submissions.find(item =>
-      item.taskId === task.id && item.status !== "rejected"
-    );
-    const buttonText = existing ? "জমা দেওয়া হয়েছে" : "কাজ জমা দিন";
-
-    return `
-      <article class="card task">
-        <div>
-          <span class="badge">ডেমো কাজ</span>
-          <h3>${escapeHTML(task.title)}</h3>
-          <div class="reward">${money(task.reward)}</div>
-        </div>
-        <p>${escapeHTML(task.description)}</p>
-        <button class="${existing ? "secondary" : "primary"}"
-          ${existing ? "disabled" : ""}
-          data-submit-task="${escapeHTML(task.id)}">
-          ${buttonText}
-        </button>
-      </article>
-    `;
-  }).join("");
-
-  document.querySelectorAll("[data-submit-task]").forEach(button => {
-    button.addEventListener("click", () => submitTask(button.dataset.submitTask));
-  });
-
-  $("submissionList").innerHTML = state.submissions.length
-    ? state.submissions.slice().reverse().map(item => `
-      <div class="item">
-        <strong>${escapeHTML(item.title)}</strong>
-        <div class="small muted">${escapeHTML(item.date)}</div>
-        <p>${escapeHTML(item.proof)}</p>
-        <span class="badge">${escapeHTML(statusText(item.status))}</span>
-      </div>
-    `).join("")
-    : '<p class="muted">এখনো কোনো কাজ জমা দেওয়া হয়নি।</p>';
-}
-
-function statusText(status) {
-  const labels = {
-    pending: "পর্যালোচনাধীন",
-    approved: "অনুমোদিত",
-    rejected: "বাতিল",
-    marked_paid_demo: "ডেমো পেমেন্ট চিহ্নিত"
-  };
-  return labels[status] || status;
-}
-
-function renderTransactions() {
-  const transactions = [
-    ...state.ledger.map(entry => ({
-      title: entry.description,
-      amount: entry.amount,
-      date: entry.date,
-      status: entry.type === "withdrawal" ? "ডেমো" : "হিসাব"
-    })),
-    ...state.withdrawals.map(item => ({
-      title: "টাকা তোলার আবেদন • " + item.method,
-      amount: -numberValue(item.amount),
-      date: item.date,
-      status: statusText(item.status) + " (টাকা পাঠানোর প্রমাণ নয়)"
-    }))
-  ].reverse();
-
-  $("transactionList").innerHTML = transactions.length
-    ? transactions.map(item => `
-      <div class="item item-head">
-        <div>
-          <strong>${escapeHTML(item.title)}</strong>
-          <div class="small muted">${escapeHTML(item.date)}</div>
-          <div class="small muted">${escapeHTML(item.status)}</div>
-        </div>
-        <strong>${item.amount >= 0 ? "+" : ""}${money(item.amount)}</strong>
-      </div>
-    `).join("")
-    : '<p class="muted">এখনো কোনো লেনদেন নেই।</p>';
-}
-
-function renderAdmin() {
-  if (!adminUnlocked) return;
-
-  const pendingSubmissions = state.submissions.filter(item =>
-    item.status === "pending"
-  );
-
-  $("adminSubmissions").innerHTML = pendingSubmissions.length
-    ? pendingSubmissions.map(item => `
-      <div class="item">
-        <strong>${escapeHTML(item.title)}</strong>
-        <p>${escapeHTML(item.proof)}</p>
-        <div>পুরস্কার: ${money(item.reward)}</div>
-        <div class="item-actions">
-          <button class="primary" data-approve="${escapeHTML(item.id)}">অনুমোদন</button>
-          <button class="danger" data-reject="${escapeHTML(item.id)}">বাতিল</button>
-        </div>
-      </div>
-    `).join("")
-    : '<p class="muted">পর্যালোচনার জন্য কোনো কাজ নেই।</p>';
-
-  $("adminWithdrawals").innerHTML = state.withdrawals.length
-    ? state.withdrawals.slice().reverse().map(item => `
-      <div class="item">
-        <strong>${money(item.amount)} • ${escapeHTML(item.method)}</strong>
-        <p>অ্যাকাউন্ট: ${escapeHTML(item.account)}</p>
-        <p class="small muted">${escapeHTML(item.date)}</p>
-        <span class="badge">${escapeHTML(statusText(item.status))}</span>
-        ${item.status === "pending" ? `
-          <div class="item-actions">
-            <button class="primary" data-mark-paid="${escapeHTML(item.id)}">
-              ডেমো হিসেবে সম্পন্ন চিহ্নিত
-            </button>
-            <button class="danger" data-reject-withdrawal="${escapeHTML(item.id)}">
-              আবেদন বাতিল
-            </button>
-          </div>
-        ` : ""}
-      </div>
-    `).join("")
-    : '<p class="muted">কোনো টাকা তোলার আবেদন নেই।</p>';
-
-  document.querySelectorAll("[data-approve]").forEach(button => {
-    button.addEventListener("click", () => {
-      if (confirm("এই কাজ অনুমোদন করে ডেমো ব্যালেন্সে যোগ করবেন?")) {
-        approveSubmission(button.dataset.approve);
-      }
-    });
-  });
-
-  document.querySelectorAll("[data-reject]").forEach(button => {
-    button.addEventListener("click", () => {
-      if (confirm("এই কাজ বাতিল করবেন?")) {
-        rejectSubmission(button.dataset.reject);
-      }
-    });
-  });
-
-  document.querySelectorAll("[data-mark-paid]").forEach(button => {
-    button.addEventListener("click", () => {
-      if (confirm("শুধু ডেমো স্ট্যাটাস পরিবর্তন হবে; কোনো টাকা পাঠানো হবে না। চালিয়ে যাবেন?")) {
-        updateWithdrawal(button.dataset.markPaid, "paid");
-      }
-    });
-  });
-
-  document.querySelectorAll("[data-reject-withdrawal]").forEach(button => {
-    button.addEventListener("click", () => {
-      if (confirm("টাকা তোলার আবেদন বাতিল করবেন?")) {
-        updateWithdrawal(button.dataset.rejectWithdrawal, "rejected");
-      }
-    });
-  });
-}
-
-function render() {
-  $("totalEarned").textContent = money(getBalance());
-  $("walletBalance").textContent = money(getBalance());
-
-  $("pendingTasks").textContent = state.submissions.filter(item =>
-    item.status === "pending"
-  ).length;
-
-  $("withdrawalCount").textContent = state.withdrawals.length;
-
-  if (state.profile) {
-    $("profileName").value = state.profile.name || "";
-    $("profileCountry").value = state.profile.country || "Bangladesh";
-
-    const countryLabels = {
-      Bangladesh: "বাংলাদেশ",
-      "Saudi Arabia": "সৌদি আরব",
-      Other: "বিশ্বব্যাপী"
-    };
-    $("headerCountry").textContent =
-      countryLabels[state.profile.country] || "বিশ্বব্যাপী";
-  }
-
-  renderTasks();
-  renderTransactions();
-  renderAdmin();
-}
-
-render();
-
-<!-- Global Task Earn: Google Login + Firebase Cloud Save -->
-<section id="cloud-login" style="background:#fff;padding:16px;margin:15px auto;border-radius:14px;max-width:700px;border:1px solid #dfe9e2;font-family:Arial,sans-serif">
-  <h3>🌍 Global Task Earn — Cloud Save</h3>
-  <p id="cloud-status">Google Login করুন।</p>
-  <button id="google-login" style="padding:11px 16px;background:#16764a;color:white;border:0;border-radius:9px;cursor:pointer">
-    Google দিয়ে Login
-  </button>
-  <button id="google-logout" style="padding:11px 16px;background:#e7f5ec;color:#16764a;border:0;border-radius:9px;cursor:pointer;display:none">
-    Logout
-  </button>
-  <button id="cloud-save" style="padding:11px 16px;background:#123c2b;color:white;border:0;border-radius:9px;cursor:pointer;display:none">
-    Cloud-এ Save করুন
-  </button>
+<section class="hero">
+<h1>ছোট কাজ, পরিষ্কার হিসাব</h1>
+<p>কাজ দেখুন, নির্দেশনা অনুসরণ করুন এবং কাজের প্রমাণ জমা দিন। অনুমোদনের অবস্থা আপনার ড্যাশবোর্ডে দেখুন।</p>
 </section>
+
+<div class="notice"><strong>পরীক্ষামূলক সংস্করণ:</strong> এখানে বাস্তবে টাকা পাঠানো হয় না। কাজের পুরস্কার কেবল ডেমো। কাউকে টাকা দিয়ে কাজ পাওয়ার প্রতিশ্রুতিতে বিশ্বাস করবেন না।</div>
+
+<section id="cloud-login">
+<h3>🌍 Google Login ও Cloud Backup</h3>
+<p id="cloud-status">Firebase সংযোগ প্রস্তুত হচ্ছে...</p>
+<button class="primary" id="google-login" type="button">Google দিয়ে Login</button>
+<button class="secondary hidden" id="google-logout" type="button">Logout</button>
+<button class="primary" id="cloud-save" type="button" disabled>Cloud-এ Save করুন</button>
+<p class="small muted">Login করার পর Cloud-এর পুরোনো ডেটা পাওয়া গেলে সেটি অ্যাপে লোড হবে। নতুন অ্যাকাউন্টে বর্তমান ডেটা Save করতে হবে।</p>
+</section>
+
+<nav class="nav">
+<button class="active" data-page="home">🏠 হোম</button>
+<button data-page="tasks">📋 কাজ</button>
+<button data-page="wallet">💰 আয় ও পেমেন্ট</button>
+<button data-page="admin">🔐 Admin</button>
+</nav>
+
+<section id="page-home" class="page">
+<div class="card">
+<h2>👤 আপনার প্রোফাইল</h2>
+<div class="row">
+<div class="field"><label for="profileName">আপনার নাম</label><input id="profileName" maxlength="60" placeholder="নাম লিখুন"></div>
+<div class="field"><label for="profileCountry">আপনার দেশ</label>
+<select id="profileCountry"><option value="Bangladesh">বাংলাদেশ</option><option value="Saudi Arabia">সৌদি আরব</option><option value="Other">অন্যান্য দেশ</option></select></div>
+</div>
+<button class="primary" id="saveProfile">প্রোফাইল সেভ করুন</button>
+<span id="profileMessage" class="small muted"></span>
+</div>
+<div class="grid">
+<div class="card"><div class="stat-label">মোট অনুমোদিত আয়</div><div class="stat-number" id="totalEarned">৳0.00</div></div>
+<div class="card"><div class="stat-label">পর্যালোচনায় থাকা কাজ</div><div class="stat-number" id="pendingTasks">0</div></div>
+<div class="card"><div class="stat-label">পেমেন্ট আবেদন</div><div class="stat-number" id="withdrawalCount">0</div></div>
+</div>
+<div class="card"><h2>🚀 শুরু করুন</h2>
+<p class="muted">প্রথমে প্রোফাইল সেভ করুন। তারপর কাজের তালিকা থেকে একটি কাজ বেছে নিন।</p>
+<button class="primary" data-goto="tasks">কাজ দেখুন</button>
+<button class="secondary" data-goto="wallet">আয়ের হিসাব দেখুন</button></div>
+</section>
+
+<section id="page-tasks" class="page hidden">
+<h2>📋 উপলভ্য কাজ</h2><p class="muted">এগুলো ডেমো কাজ। বাস্তব ক্লায়েন্ট বা অর্থায়ন যুক্ত করা হয়নি।</p>
+<div id="taskList" class="task-grid"></div>
+<div class="card"><h2>📝 জমা দেওয়া কাজ</h2><div id="submissionList"></div></div>
+</section>
+
+<section id="page-wallet" class="page hidden">
+<div class="card"><h2>💰 আপনার ওয়ালেট</h2><div class="stat-label">অনুমোদিত ডেমো ব্যালেন্স</div><div class="stat-number" id="walletBalance">৳0.00</div><p class="muted small">এই ব্যালেন্স আসল টাকা বা ব্যাংক ব্যালেন্স নয়।</p></div>
+<div class="card"><h2>💳 টাকা তোলার আবেদন</h2>
+<div class="notice">পেমেন্ট পদ্ধতি নির্বাচন করলেই টাকা পাঠানো হয় না। আবেদন শুধু ডেমো রেকর্ড হিসেবে থাকবে।</div>
+<div class="field"><label for="withdrawAmount">আবেদনের পরিমাণ</label><input id="withdrawAmount" type="number" min="1" step="0.01" placeholder="পরিমাণ লিখুন"></div>
+<div class="field"><label for="withdrawMethod">পেমেন্ট পদ্ধতি</label>
+<select id="withdrawMethod"><option value="bKash">bKash</option><option value="Nagad">Nagad</option><option value="Bank transfer">Bank transfer</option><option value="PayPal">PayPal</option><option value="STC Pay">STC Pay</option><option value="Other">অন্যান্য</option></select></div>
+<div class="field"><label for="withdrawAccount">পেমেন্ট অ্যাকাউন্ট / নম্বর</label><input id="withdrawAccount" maxlength="120" placeholder="অ্যাকাউন্টের তথ্য"></div>
+<button class="primary" id="requestWithdrawal">আবেদন জমা দিন</button></div>
+<div class="card"><h2>📜 লেনদেন ও আবেদন</h2><div id="transactionList"></div></div>
+</section>
+
+<section id="page-admin" class="page hidden">
+<div class="card"><h2>🔐 Admin Panel (ডেমো)</h2>
+<div class="notice">এটি নিরাপদ Admin Login নয়। বাস্তব ব্যবহারকারী, ব্যক্তিগত তথ্য বা অর্থ পরিচালনায় ব্যবহার করবেন না।</div>
+<div id="adminLogin"><div class="field"><label for="adminPassword">ডেমো পাসওয়ার্ড</label><input id="adminPassword" type="password" placeholder="ডেমো পাসওয়ার্ড লিখুন"></div>
+<button class="primary" id="adminLoginBtn">Admin খুলুন</button><p class="muted small">পরীক্ষার পাসওয়ার্ড: <strong>1234</strong></p></div>
+<div id="adminContent" class="hidden">
+<button class="secondary" id="adminLogout">Admin বন্ধ করুন</button><hr><h3>কাজের অনুমোদন</h3><div id="adminSubmissions"></div>
+<hr><h3>টাকা তোলার আবেদন</h3><div id="adminWithdrawals"></div>
+<hr><h3>নতুন ডেমো কাজ যোগ করুন</h3>
+<div class="field"><label for="newTaskTitle">কাজের নাম</label><input id="newTaskTitle" maxlength="100" placeholder="কাজের নাম"></div>
+<div class="field"><label for="newTaskDescription">কাজের নির্দেশনা</label><textarea id="newTaskDescription" maxlength="1000" placeholder="কী করতে হবে"></textarea></div>
+<div class="field"><label for="newTaskReward">ডেমো পুরস্কার (৳)</label><input id="newTaskReward" type="number" min="0" step="0.01" placeholder="যেমন 5"></div>
+<button class="primary" id="addTaskBtn">কাজ যোগ করুন</button><hr>
+<button class="danger" id="clearDataBtn">এই ডিভাইসের সব ডেমো ডেটা মুছুন</button>
+</div></div></section>
+
+<footer>Global Task Earn • Prototype v1.1<br>ডেটা এই ব্রাউজারে এবং Google Login করলে আপনার Firestore অ্যাকাউন্টে সংরক্ষণ করা যেতে পারে।</footer>
+</main>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getAuth, GoogleAuthProvider, signInWithPopup,
-  signOut, onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
-  getFirestore, doc, getDoc, setDoc, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCsekiwo5Ov4to_O2nNZ96R6CsJc0zWkd8",
@@ -902,117 +157,296 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
+const STORAGE_KEY = "global-task-earn-prototype-v1";
+const $ = id => document.getElementById(id);
 
-const status = document.getElementById("cloud-status");
-const loginBtn = document.getElementById("google-login");
-const logoutBtn = document.getElementById("google-logout");
-const saveBtn = document.getElementById("cloud-save");
+const DEFAULT_TASKS = [
+  {id:"demo-1",title:"ওয়েবসাইট পর্যালোচনা",description:"নির্দেশনা অনুযায়ী একটি ওয়েবসাইট দেখে সৎ মতামত লিখুন।",reward:5},
+  {id:"demo-2",title:"ছোট জরিপ",description:"নমুনা জরিপের উত্তর দিন। গোপন বা সংবেদনশীল তথ্য দেবেন না।",reward:8},
+  {id:"demo-3",title:"ব্যবহারযোগ্যতা পরীক্ষা",description:"নমুনা অ্যাপ পরীক্ষা করে সমস্যা বা মতামত জমা দিন।",reward:10},
+  {id:"demo-4",title:"পণ্যের তথ্য যাচাই",description:"প্রকাশ্য পণ্যের তথ্য যাচাই করে ফলাফল লিখুন।",reward:6}
+];
 
-let currentUser = null;
-
-function getLocalAppData() {
-  try {
-    const raw = localStorage.getItem("global-task-earn-prototype-v1");
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
+function initialState(){
+  return {profile:null,tasks:DEFAULT_TASKS.map(x=>({...x})),submissions:[],withdrawals:[],ledger:[]};
 }
 
-function setLocalAppData(data) {
-  localStorage.setItem(
-    "global-task-earn-prototype-v1",
-    JSON.stringify(data)
-  );
+function readLocal(){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw)return initialState();
+    const parsed=JSON.parse(raw);
+    return {
+      ...initialState(),
+      ...parsed,
+      profile:parsed.profile||null,
+      tasks:Array.isArray(parsed.tasks)?parsed.tasks:DEFAULT_TASKS.map(x=>({...x})),
+      submissions:Array.isArray(parsed.submissions)?parsed.submissions:[],
+      withdrawals:Array.isArray(parsed.withdrawals)?parsed.withdrawals:[],
+      ledger:Array.isArray(parsed.ledger)?parsed.ledger:[]
+    };
+  }catch{return initialState();}
 }
 
-loginBtn.addEventListener("click", async () => {
-  status.textContent = "Google Login হচ্ছে...";
-  loginBtn.disabled = true;
+let state=readLocal();
+let adminUnlocked=false;
+let currentUser=null;
+let cloudReady=false;
+let saveTimer=null;
+let saveInProgress=Promise.resolve();
+let cloudLoadVersion=0;
 
-  try {
-    await signInWithPopup(auth, provider);
-  } catch (error) {
-    status.textContent = "Login হয়নি: " + error.message;
-  } finally {
-    loginBtn.disabled = false;
+function makeId(prefix){return prefix+"-"+Date.now()+"-"+Math.random().toString(36).slice(2,8)}
+function today(){return new Date().toLocaleString()}
+function escapeHTML(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function numberValue(value){const n=Number(value);return Number.isFinite(n)?n:0}
+function money(value){return "৳"+numberValue(value).toFixed(2)}
+function getBalance(){return state.ledger.reduce((sum,e)=>sum+numberValue(e.amount),0)}
+
+function cloudStatus(message){$("cloud-status").textContent=message}
+
+function queueCloudSave(){
+  if(!currentUser||!cloudReady)return;
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{
+    const user=currentUser;
+    const snapshot=JSON.parse(JSON.stringify(state));
+    saveInProgress=saveInProgress.then(async()=>{
+      if(!user||currentUser?.uid!==user.uid||!cloudReady)return;
+      try{
+        await setDoc(doc(db,"users",user.uid),{
+          email:user.email||"",
+          appData:snapshot,
+          updatedAt:serverTimestamp()
+        },{merge:true});
+        if(currentUser?.uid===user.uid)cloudStatus("✅ Google Login হয়েছে। পরিবর্তনগুলো Cloud-এ সেভ হয়েছে।");
+      }catch(error){
+        console.error("Automatic Cloud Save failed:",error);
+        if(currentUser?.uid===user.uid)cloudStatus("Cloud Save হয়নি: "+error.message+" — Cloud-এ Save বোতাম চাপুন।");
+      }
+    }).catch(error=>console.error(error));
+  },700);
+}
+
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  }catch(error){
+    alert("ডেটা সেভ করা যায়নি। ব্রাউজারের স্টোরেজ পরীক্ষা করুন।");
   }
+  render();
+  queueCloudSave();
+}
+
+function showPage(name){
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));
+  document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.goto)));
+
+$("saveProfile").addEventListener("click",()=>{
+  const name=$("profileName").value.trim();
+  const country=$("profileCountry").value;
+  if(!name){alert("আপনার নাম লিখুন।");return}
+  state.profile={name,country};
+  saveState();
+  $("profileMessage").textContent="প্রোফাইল সেভ হয়েছে।";
 });
 
-logoutBtn.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    status.textContent = "Logout সমস্যা: " + error.message;
+function submitTask(taskId){
+  if(!state.profile){alert("আগে হোম পেজে গিয়ে প্রোফাইল সেভ করুন।");showPage("home");return}
+  const task=state.tasks.find(x=>x.id===taskId);
+  if(!task)return;
+  if(state.submissions.some(x=>x.taskId===taskId&&x.status!=="rejected")){
+    alert("এই কাজের জন্য আগে আবেদন জমা দেওয়া হয়েছে।");return;
   }
+  const proof=prompt("কাজের প্রমাণ বা মন্তব্য লিখুন। ডেমোতে শুধু টেক্সট গ্রহণ করা হয়:");
+  if(!proof||!proof.trim())return;
+  state.submissions.push({id:makeId("submission"),taskId:task.id,title:task.title,reward:numberValue(task.reward),proof:proof.trim(),status:"pending",date:today()});
+  saveState();
+  alert("কাজ জমা হয়েছে। Admin পর্যালোচনার অপেক্ষায় আছে। এটি এখনো আয় নয়।");
+}
+
+function approveSubmission(id){
+  const item=state.submissions.find(x=>x.id===id);
+  if(!item||item.status!=="pending")return;
+  item.status="approved";item.reviewedAt=today();
+  state.ledger.push({id:makeId("ledger"),type:"task_reward",description:"অনুমোদিত কাজ: "+item.title,amount:numberValue(item.reward),date:today()});
+  saveState();
+}
+function rejectSubmission(id){
+  const item=state.submissions.find(x=>x.id===id);
+  if(!item||item.status!=="pending")return;
+  item.status="rejected";item.reviewedAt=today();saveState();
+}
+
+function requestWithdrawal(){
+  if(!state.profile){alert("আগে প্রোফাইল সেভ করুন।");showPage("home");return}
+  const amount=numberValue($("withdrawAmount").value);
+  const method=$("withdrawMethod").value;
+  const account=$("withdrawAccount").value.trim();
+  if(amount<=0||!account){alert("সঠিক পরিমাণ ও পেমেন্ট অ্যাকাউন্ট লিখুন।");return}
+  const reserved=state.withdrawals.filter(x=>x.status==="pending").reduce((s,x)=>s+numberValue(x.amount),0);
+  if(amount>getBalance()-reserved){alert("আপনার উপলভ্য ডেমো ব্যালেন্সের চেয়ে বেশি আবেদন করা যাবে না।");return}
+  state.withdrawals.push({id:makeId("withdrawal"),amount,method,account,status:"pending",date:today()});
+  saveState();$("withdrawAmount").value="";$("withdrawAccount").value="";
+  alert("ডেমো আবেদন সেভ হয়েছে। বাস্তবে টাকা পাঠানো হয়নি।");
+}
+$("requestWithdrawal").addEventListener("click",requestWithdrawal);
+
+function updateWithdrawal(id,newStatus){
+  const item=state.withdrawals.find(x=>x.id===id);
+  if(!item||item.status!=="pending")return;
+  if(newStatus==="paid"){
+    item.status="marked_paid_demo";item.reviewedAt=today();
+    state.ledger.push({id:makeId("ledger"),type:"withdrawal",description:"ডেমো উত্তোলন: "+item.method,amount:-numberValue(item.amount),date:today()});
+  }else{item.status="rejected";item.reviewedAt=today()}
+  saveState();
+}
+
+function addTask(){
+  const title=$("newTaskTitle").value.trim();
+  const description=$("newTaskDescription").value.trim();
+  const reward=numberValue($("newTaskReward").value);
+  if(!title||!description||reward<0){alert("কাজের নাম, নির্দেশনা ও সঠিক পুরস্কার দিন।");return}
+  state.tasks.push({id:makeId("task"),title,description,reward});
+  $("newTaskTitle").value="";$("newTaskDescription").value="";$("newTaskReward").value="";
+  saveState();alert("নতুন ডেমো কাজ যোগ হয়েছে।");
+}
+$("addTaskBtn").addEventListener("click",addTask);
+
+$("adminLoginBtn").addEventListener("click",()=>{
+  if($("adminPassword").value!=="1234"){alert("ডেমো পাসওয়ার্ড সঠিক নয়।");return}
+  adminUnlocked=true;$("adminLogin").classList.add("hidden");$("adminContent").classList.remove("hidden");renderAdmin();
+});
+$("adminLogout").addEventListener("click",()=>{
+  adminUnlocked=false;$("adminLogin").classList.remove("hidden");$("adminContent").classList.add("hidden");$("adminPassword").value="";
+});
+$("clearDataBtn").addEventListener("click",async()=>{
+  if(!confirm("এই ব্রাউজারের সব ডেমো ডেটা মুছবেন? Cloud-এর ডেটা এতে মুছবে না।"))return;
+  state=initialState();
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch{}
+  adminUnlocked=false;$("adminLogin").classList.remove("hidden");$("adminContent").classList.add("hidden");
+  render();queueCloudSave();alert("এই ডিভাইসের ডেমো ডেটা রিসেট হয়েছে। Cloud-এ লগইন থাকলে নতুন অবস্থা সেভ হবে।");
 });
 
-saveBtn.addEventListener("click", async () => {
-  if (!currentUser) {
-    status.textContent = "আগে Google Login করুন।";
-    return;
+function statusText(status){
+  return ({pending:"পর্যালোচনাধীন",approved:"অনুমোদিত",rejected:"বাতিল",marked_paid_demo:"ডেমো পেমেন্ট চিহ্নিত"})[status]||status;
+}
+
+function renderTasks(){
+  $("taskList").innerHTML=state.tasks.map(task=>{
+    const existing=state.submissions.find(x=>x.taskId===task.id&&x.status!=="rejected");
+    return `<article class="card task"><div><span class="badge">ডেমো কাজ</span><h3>${escapeHTML(task.title)}</h3><div class="reward">${money(task.reward)}</div></div><p>${escapeHTML(task.description)}</p><button class="${existing?"secondary":"primary"}" ${existing?"disabled":""} data-submit-task="${escapeHTML(task.id)}">${existing?"জমা দেওয়া হয়েছে":"কাজ জমা দিন"}</button></article>`;
+  }).join("");
+  document.querySelectorAll("[data-submit-task]").forEach(b=>b.addEventListener("click",()=>submitTask(b.dataset.submitTask)));
+  $("submissionList").innerHTML=state.submissions.length?state.submissions.slice().reverse().map(x=>`<div class="item"><strong>${escapeHTML(x.title)}</strong><div class="small muted">${escapeHTML(x.date)}</div><p>${escapeHTML(x.proof)}</p><span class="badge">${escapeHTML(statusText(x.status))}</span></div>`).join(""):'<p class="muted">এখনো কোনো কাজ জমা দেওয়া হয়নি।</p>';
+}
+
+function renderTransactions(){
+  const list=[
+    ...state.ledger.map(x=>({title:x.description,amount:x.amount,date:x.date,status:x.type==="withdrawal"?"ডেমো":"হিসাব"})),
+    ...state.withdrawals.map(x=>({title:"টাকা তোলার আবেদন • "+x.method,amount:-numberValue(x.amount),date:x.date,status:statusText(x.status)+" (টাকা পাঠানোর প্রমাণ নয়)"}))
+  ].reverse();
+  $("transactionList").innerHTML=list.length?list.map(x=>`<div class="item item-head"><div><strong>${escapeHTML(x.title)}</strong><div class="small muted">${escapeHTML(x.date)}</div><div class="small muted">${escapeHTML(x.status)}</div></div><strong>${x.amount>=0?"+":""}${money(x.amount)}</strong></div>`).join(""):'<p class="muted">এখনো কোনো লেনদেন নেই।</p>';
+}
+
+function renderAdmin(){
+  if(!adminUnlocked)return;
+  const pending=state.submissions.filter(x=>x.status==="pending");
+  $("adminSubmissions").innerHTML=pending.length?pending.map(x=>`<div class="item"><strong>${escapeHTML(x.title)}</strong><p>${escapeHTML(x.proof)}</p><div>পুরস্কার: ${money(x.reward)}</div><div class="item-actions"><button class="primary" data-approve="${escapeHTML(x.id)}">অনুমোদন</button><button class="danger" data-reject="${escapeHTML(x.id)}">বাতিল</button></div></div>`).join(""):'<p class="muted">পর্যালোচনার জন্য কোনো কাজ নেই।</p>';
+  $("adminWithdrawals").innerHTML=state.withdrawals.length?state.withdrawals.slice().reverse().map(x=>`<div class="item"><strong>${money(x.amount)} • ${escapeHTML(x.method)}</strong><p>অ্যাকাউন্ট: ${escapeHTML(x.account)}</p><p class="small muted">${escapeHTML(x.date)}</p><span class="badge">${escapeHTML(statusText(x.status))}</span>${x.status==="pending"?`<div class="item-actions"><button class="primary" data-mark-paid="${escapeHTML(x.id)}">ডেমো হিসেবে সম্পন্ন চিহ্নিত</button><button class="danger" data-reject-withdrawal="${escapeHTML(x.id)}">আবেদন বাতিল</button></div>`:""}</div>`).join(""):'<p class="muted">কোনো টাকা তোলার আবেদন নেই।</p>';
+
+  document.querySelectorAll("[data-approve]").forEach(b=>b.addEventListener("click",()=>{if(confirm("এই কাজ অনুমোদন করে ডেমো ব্যালেন্সে যোগ করবেন?"))approveSubmission(b.dataset.approve)}));
+  document.querySelectorAll("[data-reject]").forEach(b=>b.addEventListener("click",()=>{if(confirm("এই কাজ বাতিল করবেন?"))rejectSubmission(b.dataset.reject)}));
+  document.querySelectorAll("[data-mark-paid]").forEach(b=>b.addEventListener("click",()=>{if(confirm("শুধু ডেমো স্ট্যাটাস পরিবর্তন হবে; টাকা পাঠানো হবে না। চালিয়ে যাবেন?"))updateWithdrawal(b.dataset.markPaid,"paid")}));
+  document.querySelectorAll("[data-reject-withdrawal]").forEach(b=>b.addEventListener("click",()=>{if(confirm("টাকা তোলার আবেদন বাতিল করবেন?"))updateWithdrawal(b.dataset.rejectWithdrawal,"rejected")}));
+}
+
+function render(){
+  $("totalEarned").textContent=money(getBalance());
+  $("walletBalance").textContent=money(getBalance());
+  $("pendingTasks").textContent=state.submissions.filter(x=>x.status==="pending").length;
+  $("withdrawalCount").textContent=state.withdrawals.length;
+  if(state.profile){
+    $("profileName").value=state.profile.name||"";
+    $("profileCountry").value=state.profile.country||"Bangladesh";
+    $("headerCountry").textContent=({"Bangladesh":"বাংলাদেশ","Saudi Arabia":"সৌদি আরব","Other":"বিশ্বব্যাপী"})[state.profile.country]||"বিশ্বব্যাপী";
   }
+  renderTasks();renderTransactions();renderAdmin();
+}
 
-  const data = getLocalAppData();
-
-  if (!data) {
-    status.textContent = "সেভ করার মতো স্থানীয় ডেটা পাওয়া যায়নি।";
-    return;
-  }
-
-  saveBtn.disabled = true;
-
-  try {
-    await setDoc(
-      doc(db, "users", currentUser.uid),
-      {
-        email: currentUser.email,
-        appData: data,
-        updatedAt: serverTimestamp()
-      },
-      { merge: true }
-    );
-
-    status.textContent = "Cloud Save সফল হয়েছে।";
-  } catch (error) {
-    status.textContent = "Cloud Save হয়নি: " + error.message;
-  } finally {
-    saveBtn.disabled = false;
-  }
+$("google-login").addEventListener("click",async()=>{
+  cloudStatus("Google Login হচ্ছে...");
+  $("google-login").disabled=true;
+  try{await signInWithPopup(auth,provider)}
+  catch(error){cloudStatus("Login হয়নি: "+error.message)}
+  finally{$("google-login").disabled=false}
 });
 
-onAuthStateChanged(auth, async user => {
-  currentUser = user;
+$("google-logout").addEventListener("click",async()=>{
+  try{await signOut(auth)}
+  catch(error){cloudStatus("Logout সমস্যা: "+error.message)}
+});
 
-  loginBtn.style.display = user ? "none" : "inline-block";
-  logoutBtn.style.display = user ? "inline-block" : "none";
-  saveBtn.style.display = user ? "inline-block" : "none";
+$("cloud-save").addEventListener("click",async()=>{
+  if(!currentUser||!cloudReady){cloudStatus("আগে Login করে Cloud Data Load হওয়া পর্যন্ত অপেক্ষা করুন।");return}
+  const user=currentUser;
+  $("cloud-save").disabled=true;
+  try{
+    await setDoc(doc(db,"users",user.uid),{email:user.email||"",appData:state,updatedAt:serverTimestamp()},{merge:true});
+    cloudStatus("✅ Cloud Save সফল হয়েছে।");
+  }catch(error){cloudStatus("Cloud Save হয়নি: "+error.message)}
+  finally{$("cloud-save").disabled=false}
+});
 
-  if (!user) {
-    status.textContent = "Google Login করুন।";
-    return;
-  }
+onAuthStateChanged(auth,async user=>{
+  const version=++cloudLoadVersion;
+  currentUser=user;
+  cloudReady=false;
+  clearTimeout(saveTimer);
+  $("cloud-save").disabled=true;
+  $("google-login").classList.toggle("hidden",!!user);
+  $("google-logout").classList.toggle("hidden",!user);
 
-  status.textContent = "লগইন হয়েছে: " + user.email + "। ডেটা খোঁজা হচ্ছে...";
+  if(!user){cloudStatus("Google Login করুন। আপনার ডিভাইসের স্থানীয় ডেটা অক্ষত থাকবে।");return}
 
-  try {
-    const userRef = doc(db, "users", user.uid);
-    const snapshot = await getDoc(userRef);
+  cloudStatus("Login হয়েছে: "+(user.email||"")+"। Cloud Data দেখা হচ্ছে...");
+  try{
+    const snapshot=await getDoc(doc(db,"users",user.uid));
+    if(version!==cloudLoadVersion||currentUser?.uid!==user.uid)return;
 
-    if (snapshot.exists() && snapshot.data().appData) {
-      const cloudData = snapshot.data().appData;
-      setLocalAppData(cloudData);
-      status.textContent =
-        "Cloud-এর ডেটা এই ব্রাউজারে লোড হয়েছে। পুরোনো পেজ রিফ্রেশ করুন।";
-    } else {
-      status.textContent =
-        "নতুন অ্যাকাউন্ট। Cloud Save চাপলে এই ডিভাইসের ডেটা সেভ হবে।";
+    if(snapshot.exists()&&snapshot.data().appData){
+      const cloudData=snapshot.data().appData;
+      if(typeof cloudData!=="object"||!Array.isArray(cloudData.tasks)){
+        throw new Error("Cloud Data-এর ফরম্যাট সঠিক নয়।");
+      }
+      state={
+        ...initialState(),
+        ...cloudData,
+        tasks:Array.isArray(cloudData.tasks)?cloudData.tasks:[],
+        submissions:Array.isArray(cloudData.submissions)?cloudData.submissions:[],
+        withdrawals:Array.isArray(cloudData.withdrawals)?cloudData.withdrawals:[],
+        ledger:Array.isArray(cloudData.ledger)?cloudData.ledger:[]
+      };
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+      render();
+      cloudStatus("✅ Cloud-এর পুরোনো Data অ্যাপে লোড হয়েছে।");
+    }else{
+      cloudStatus("এই Google অ্যাকাউন্টে Cloud Data নেই। বর্তমান ডেটা রাখতে Cloud-এ Save করুন চাপুন।");
     }
-  } catch (error) {
-    status.textContent = "Cloud থেকে পড়া যায়নি: " + error.message;
+    cloudReady=true;
+    $("cloud-save").disabled=false;
+  }catch(error){
+    if(version!==cloudLoadVersion)return;
+    cloudReady=false;
+    cloudStatus("Cloud Data লোড হয়নি: "+error.message+"। স্থানীয় ডেটা রাখা হয়েছে।");
   }
 });
+
+render();
 </script>
-</body></script>
 </body>
 </html>
