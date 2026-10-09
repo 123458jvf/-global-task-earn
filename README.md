@@ -1,1 +1,1 @@
-# -global-task-earn
+# global-task-earn
