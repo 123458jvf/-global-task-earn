@@ -861,6 +861,158 @@ function render() {
 }
 
 render();
+
+<!-- Global Task Earn: Google Login + Firebase Cloud Save -->
+<section id="cloud-login" style="background:#fff;padding:16px;margin:15px auto;border-radius:14px;max-width:700px;border:1px solid #dfe9e2;font-family:Arial,sans-serif">
+  <h3>🌍 Global Task Earn — Cloud Save</h3>
+  <p id="cloud-status">Google Login করুন।</p>
+  <button id="google-login" style="padding:11px 16px;background:#16764a;color:white;border:0;border-radius:9px;cursor:pointer">
+    Google দিয়ে Login
+  </button>
+  <button id="google-logout" style="padding:11px 16px;background:#e7f5ec;color:#16764a;border:0;border-radius:9px;cursor:pointer;display:none">
+    Logout
+  </button>
+  <button id="cloud-save" style="padding:11px 16px;background:#123c2b;color:white;border:0;border-radius:9px;cursor:pointer;display:none">
+    Cloud-এ Save করুন
+  </button>
+</section>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup,
+  signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCsekiwo5Ov4to_O2nNZ96R6CsJc0zWkd8",
+  authDomain: "global-task-earn-4d135.firebaseapp.com",
+  databaseURL: "https://global-task-earn-4d135-default-rtdb.firebaseio.com",
+  projectId: "global-task-earn-4d135",
+  storageBucket: "global-task-earn-4d135.firebasestorage.app",
+  messagingSenderId: "593327261236",
+  appId: "1:593327261236:web:6ceedfeb11ac9c60826c61",
+  measurementId: "G-MJSR7HJBTP"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+const status = document.getElementById("cloud-status");
+const loginBtn = document.getElementById("google-login");
+const logoutBtn = document.getElementById("google-logout");
+const saveBtn = document.getElementById("cloud-save");
+
+let currentUser = null;
+
+function getLocalAppData() {
+  try {
+    const raw = localStorage.getItem("global-task-earn-prototype-v1");
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function setLocalAppData(data) {
+  localStorage.setItem(
+    "global-task-earn-prototype-v1",
+    JSON.stringify(data)
+  );
+}
+
+loginBtn.addEventListener("click", async () => {
+  status.textContent = "Google Login হচ্ছে...";
+  loginBtn.disabled = true;
+
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    status.textContent = "Login হয়নি: " + error.message;
+  } finally {
+    loginBtn.disabled = false;
+  }
+});
+
+logoutBtn.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    status.textContent = "Logout সমস্যা: " + error.message;
+  }
+});
+
+saveBtn.addEventListener("click", async () => {
+  if (!currentUser) {
+    status.textContent = "আগে Google Login করুন।";
+    return;
+  }
+
+  const data = getLocalAppData();
+
+  if (!data) {
+    status.textContent = "সেভ করার মতো স্থানীয় ডেটা পাওয়া যায়নি।";
+    return;
+  }
+
+  saveBtn.disabled = true;
+
+  try {
+    await setDoc(
+      doc(db, "users", currentUser.uid),
+      {
+        email: currentUser.email,
+        appData: data,
+        updatedAt: serverTimestamp()
+      },
+      { merge: true }
+    );
+
+    status.textContent = "Cloud Save সফল হয়েছে।";
+  } catch (error) {
+    status.textContent = "Cloud Save হয়নি: " + error.message;
+  } finally {
+    saveBtn.disabled = false;
+  }
+});
+
+onAuthStateChanged(auth, async user => {
+  currentUser = user;
+
+  loginBtn.style.display = user ? "none" : "inline-block";
+  logoutBtn.style.display = user ? "inline-block" : "none";
+  saveBtn.style.display = user ? "inline-block" : "none";
+
+  if (!user) {
+    status.textContent = "Google Login করুন।";
+    return;
+  }
+
+  status.textContent = "লগইন হয়েছে: " + user.email + "। ডেটা খোঁজা হচ্ছে...";
+
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const snapshot = await getDoc(userRef);
+
+    if (snapshot.exists() && snapshot.data().appData) {
+      const cloudData = snapshot.data().appData;
+      setLocalAppData(cloudData);
+      status.textContent =
+        "Cloud-এর ডেটা এই ব্রাউজারে লোড হয়েছে। পুরোনো পেজ রিফ্রেশ করুন।";
+    } else {
+      status.textContent =
+        "নতুন অ্যাকাউন্ট। Cloud Save চাপলে এই ডিভাইসের ডেটা সেভ হবে।";
+    }
+  } catch (error) {
+    status.textContent = "Cloud থেকে পড়া যায়নি: " + error.message;
+  }
+});
 </script>
+</body></script>
 </body>
 </html>
